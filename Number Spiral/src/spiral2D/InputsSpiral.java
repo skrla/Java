@@ -46,24 +46,11 @@ public class InputsSpiral {
 		}
 
 		switch (startingPoint) {
-		case 1:
-			UpperLeftCorner.direction(rows, collums);
-			break;
-		case 2:
-			LowerLeftCorner.direction(rows, collums);
-			break;
-		case 3:
-			UpperRightCorner.direction(rows, collums);
-			break;
-		case 4:
-			LowerRightCorner.direction(rows, collums);
-			break;
-		case 5:
-			Middle.direction(rows, collums);
-			break;
-		default:
-			LowerRightCorner.direction(rows, collums);
-			break;
+		case 1 -> UpperLeftCorner.direction(rows, collums);
+		case 2 -> LowerLeftCorner.direction(rows, collums);
+		case 3 -> UpperRightCorner.direction(rows, collums);
+		case 4 -> LowerRightCorner.direction(rows, collums);
+		case 5 -> Middle.direction(rows, collums);
 		}
 	}
 }

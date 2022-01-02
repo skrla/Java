@@ -24,12 +24,8 @@ public class LowerLeftCorner {
 		cordinateX = collums - 1;
 
 		switch (goingDirection) {
-		case JOptionPane.YES_OPTION:
-			clockwise();
-			break;
-		default:
-			counterClockwise();
-			break;
+		case JOptionPane.YES_OPTION -> clockwise();
+		default -> counterClockwise();
 		}
 
 	}
@@ -51,7 +47,7 @@ public class LowerLeftCorner {
 
 		}
 
-		printSpiral();
+		Output.printingSpiral(spiral);
 	}
 
 	private static void counterClockwise() {
@@ -71,44 +67,41 @@ public class LowerLeftCorner {
 				break;
 		}
 
-		printSpiral();
+		Output.printingSpiral(spiral);
 
 	}
 
-	static int[][] upClockwise() {
+	private static void upClockwise() {
 		int count = countNumber();
 		for (int i = cordinateY; i > upCounter; i--) {
 			spiral[i][upCounter + 1] = ++count;
 		}
-		return spiral;
 	}
 
-	static int[][] rightClockwise() {
+	private static void rightClockwise() {
 		int count = countNumber();
 		leftCounter++;
 		for (int i = leftCounter; i < cordinateX + 1; i++) {
 			spiral[leftCounter - 1][i] = ++count;
 		}
-		return spiral;
 	}
 
-	static int[][] downClockwise() {
+	private static void downClockwise() {
 		int count = countNumber();
 		for (int i = leftCounter; i < (cordinateY + 1); i++) {
 			spiral[i][cordinateX] = ++count;
 		}
 		cordinateX--;
-		return spiral;
 	}
 
-	static int[][] leftClockwise() {
+	private static void leftClockwise() {
 		int count = countNumber();
 		upCounter++;
 		for (int i = cordinateX; i > upCounter; i--) {
 			spiral[cordinateY][i] = ++count;
 		}
 		cordinateY--;
-		return spiral;
+	
 	}
 
 	private static void rightCounterClockwise() {
@@ -147,7 +140,7 @@ public class LowerLeftCorner {
 
 	}
 
-	static int countNumber() {
+	private static int countNumber() {
 		int number = 0;
 		for (int i = 0; i < spiral.length; i++) {
 			for (int j = 0; j < spiral[i].length; j++) {
@@ -159,13 +152,7 @@ public class LowerLeftCorner {
 		return number;
 	}
 
-	private static void printSpiral() {
-		for (int i = 0; i < spiral.length; i++) {
-			System.out.println(Arrays.toString(spiral[i]));
-		}
-	}
-
-	static boolean yes() {
+	private static boolean yes() {
 		if (countNumber() == sum) {
 			return true;
 		} else {
