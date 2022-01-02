@@ -1,6 +1,4 @@
-package spiral2D;
-
-import java.util.Arrays;
+package spiral2d;
 
 public class Output {
 

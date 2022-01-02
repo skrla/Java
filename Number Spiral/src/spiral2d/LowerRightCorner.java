@@ -1,10 +1,8 @@
-package spiral2D;
-
-import java.util.Arrays;
+package spiral2d;
 
 import javax.swing.JOptionPane;
 
-public class LowerLeftCorner {
+public class LowerRightCorner {
 
 	private static int[][] spiral;
 	private static int sum;
@@ -14,7 +12,6 @@ public class LowerLeftCorner {
 	private static int upCounter = -1;
 
 	public static void direction(int rows, int collums) {
-
 		var goingDirection = JOptionPane.showConfirmDialog(null, "Želite da spirala ide u smjeru kazaljki na satu?",
 				null, JOptionPane.YES_NO_OPTION);
 
@@ -32,6 +29,9 @@ public class LowerLeftCorner {
 
 	private static void clockwise() {
 		while (true) {
+			leftClockwise();
+			if (yes())
+				break;
 			upClockwise();
 			if (yes())
 				break;
@@ -41,10 +41,6 @@ public class LowerLeftCorner {
 			downClockwise();
 			if (yes())
 				break;
-			leftClockwise();
-			if (yes())
-				break;
-
 		}
 
 		Output.printingSpiral(spiral);
@@ -53,9 +49,6 @@ public class LowerLeftCorner {
 	private static void counterClockwise() {
 
 		while (true) {
-			rightCounterClockwise();
-			if (yes())
-				break;
 			upCounterClockwise();
 			if (yes())
 				break;
@@ -65,10 +58,21 @@ public class LowerLeftCorner {
 			downCounterClockwise();
 			if (yes())
 				break;
+			rightCounterClockwise();
+			if (yes())
+				break;
 		}
 
 		Output.printingSpiral(spiral);
 
+	}
+
+	private static void leftClockwise() {
+		int count = countNumber();
+		for (int i = cordinateX; i > upCounter; i--) {
+			spiral[cordinateY][i] = ++count;
+		}
+		cordinateY--;
 	}
 
 	private static void upClockwise() {
@@ -76,12 +80,13 @@ public class LowerLeftCorner {
 		for (int i = cordinateY; i > upCounter; i--) {
 			spiral[i][upCounter + 1] = ++count;
 		}
+		upCounter++;
 	}
 
 	private static void rightClockwise() {
 		int count = countNumber();
 		leftCounter++;
-		for (int i = leftCounter; i < cordinateX + 1; i++) {
+		for (int i = leftCounter; i < (cordinateX + 1); i++) {
 			spiral[leftCounter - 1][i] = ++count;
 		}
 	}
@@ -94,14 +99,29 @@ public class LowerLeftCorner {
 		cordinateX--;
 	}
 
-	private static void leftClockwise() {
+	private static void upCounterClockwise() {
 		int count = countNumber();
-		upCounter++;
-		for (int i = cordinateX; i > upCounter; i--) {
-			spiral[cordinateY][i] = ++count;
+		for (int i = cordinateY; i > upCounter; i--) {
+			spiral[i][cordinateX] = ++count;
 		}
-		cordinateY--;
-	
+		cordinateX--;
+
+	}
+
+	private static void leftCounterClockwise() {
+		int count = countNumber();
+		for (int i = cordinateX; i > upCounter; i--) {
+			spiral[upCounter + 1][i] = ++count;
+		}
+		upCounter++;
+	}
+
+	private static void downCounterClockwise() {
+		int count = countNumber();
+		leftCounter++;
+		for (int i = leftCounter; i < (cordinateY + 1); i++) {
+			spiral[i][leftCounter - 1] = ++count;
+		}
 	}
 
 	private static void rightCounterClockwise() {
@@ -110,33 +130,6 @@ public class LowerLeftCorner {
 			spiral[cordinateY][i] = ++count;
 		}
 		cordinateY--;
-
-	}
-
-	private static void upCounterClockwise() {
-		int count = countNumber();
-		for (int i = cordinateY; i > upCounter; i--) {
-			spiral[i][cordinateX] = ++count;
-		}
-		upCounter++;
-		cordinateX--;
-
-	}
-
-	private static void leftCounterClockwise() {
-		int count = countNumber();
-		for (int i = cordinateX; i > upCounter; i--) {
-			spiral[upCounter][i] = ++count;
-		}
-
-	}
-
-	private static void downCounterClockwise() {
-		int count = countNumber();
-		for (int i = leftCounter; i < (cordinateY + 1); i++) {
-			spiral[i][leftCounter] = ++count;
-		}
-		leftCounter++;
 
 	}
 

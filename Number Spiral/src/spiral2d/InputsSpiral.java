@@ -1,4 +1,4 @@
-package spiral2D;
+package spiral2d;
 
 import javax.swing.JOptionPane;
 
