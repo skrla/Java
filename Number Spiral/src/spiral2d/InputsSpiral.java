@@ -17,7 +17,15 @@ public class InputsSpiral {
 				JOptionPane.showMessageDialog(null, "Unesite cijeli broj");
 				continue;
 			}
-			break;
+			if (0 < rows) {
+				break;
+			} else if (JOptionPane.CANCEL_OPTION == rows) {
+				continue;
+			} else {
+				JOptionPane.showMessageDialog(null, "Unesite cijeli broj veći od 0");
+				continue;
+			}
+
 		}
 
 		while (true) {
@@ -27,7 +35,14 @@ public class InputsSpiral {
 				JOptionPane.showMessageDialog(null, "Unesite cijeli broj");
 				continue;
 			}
-			break;
+			if (0 < collums) {
+				break;
+			} else if (JOptionPane.CANCEL_OPTION == collums) {
+				continue;
+			} else {
+				JOptionPane.showMessageDialog(null, "Unesite cijeli broj veći od 0");
+				continue;
+			}
 		}
 
 		while (true) {
@@ -44,13 +59,18 @@ public class InputsSpiral {
 				JOptionPane.showMessageDialog(null, "Unesite jedan od ponuđenih brojeva!");
 			}
 		}
+		
+		var goingDirection = JOptionPane.showConfirmDialog(null, "Želite da spirala ide u smjeru kazaljki na satu?",
+				null, JOptionPane.YES_NO_OPTION);
+		
+		boolean direction = goingDirection == JOptionPane.YES_OPTION ? true : false;
 
 		switch (startingPoint) {
-		case 1 -> UpperLeftCorner.direction(rows, collums);
-		case 2 -> LowerLeftCorner.direction(rows, collums);
-		case 3 -> UpperRightCorner.direction(rows, collums);
-		case 4 -> LowerRightCorner.direction(rows, collums);
-		case 5 -> Middle.direction(rows, collums);
+		case 1 -> UpperLeftCorner.direction(rows, collums, direction);
+		case 2 -> LowerLeftCorner.direction(rows, collums, direction);
+		case 3 -> UpperRightCorner.direction(rows, collums, direction);
+		case 4 -> LowerRightCorner.direction(rows, collums, direction);
+		case 5 -> Middle.direction(rows, collums, direction);
 		}
 	}
 }

@@ -1,7 +1,5 @@
 package spiral2d;
 
-import javax.swing.JOptionPane;
-
 public class Middle {
 
 	private static int[][] spiral;
@@ -11,10 +9,8 @@ public class Middle {
 	private static int leftCounter = 0;
 	private static int upCounter = -1;
 
-	public static void direction(int rows, int collums) {
-		var goingDirection = JOptionPane.showConfirmDialog(null, "Želite da spirala ide u smjeru kazaljki na satu?",
-				null, JOptionPane.YES_NO_OPTION);
-		
+	public static void direction(int rows, int collums, boolean goingDirection) {
+
 		spiral = new int[rows][collums];
 
 		sum = rows * collums + 1;
@@ -26,10 +22,7 @@ public class Middle {
 			}
 		}
 
-		switch (goingDirection) {
-		case JOptionPane.YES_OPTION -> clockwise();
-		default -> counterClockwise();
-		}
+		if (goingDirection) clockwise(); else counterClockwise();
 
 	}
 
